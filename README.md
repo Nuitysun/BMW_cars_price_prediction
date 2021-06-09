@@ -12,7 +12,7 @@
 8. Model Development. Test regression algorithms
 9. Tune model based on CatBoostRegression algorithm
 10. Implement BMW used cars predictor using CatBoostRegressor algorithm
-[11. Conclusion and Recommendations](#7)
+11. [Conclusion and Recommendations](#7)
 12. References
 
 ## 1. Project Motivation <a name="1"></a>
