@@ -12,7 +12,7 @@
 8. Model Development. Test regression algorithms
 9. Tune model based on CatBoostRegression algorithm
 10. Implement BMW used cars predictor using CatBoostRegressor algorithm
-11. Conclusion and Recommendations
+[11. Conclusion and Recommendations](#7)
 12. References
 
 ## 1. Project Motivation <a name="1"></a>
@@ -93,3 +93,49 @@ Random Forest algorithm on the other hand is less demanding as for the data prep
 - algorithm is great with high dimensional data since it is working with subsets of data,
 - algorithm is robust to outliers and non-linear data,
 - problem of overfitting is frequently occur and can be solved with hyperparameters tuning.
+
+## 11. Conclusion and Recommendations <a name="7"></a>
+
+The aim of this project was to explore what factors affect used cars price the most and to implement a prototype of used BMW cars price predictor which can provide an assistance for the potential buyers and sellers to define a fair price of a car with minimal time efforts.
+
+### Exploration of factors that affect price of used BMW cars
+The results on the test set show that only 8 parameters  can explain almost 96% of variance in price:
+-	Year when car was produced (importance_score – 29.7),
+-	Number in model name (importance_score – 17.7),
+-	Mileage (importance_score – 15.8),
+-	Mileage per gallon parameter (importance_score – 13.2),
+-	Boolean parameter `_big_engine_auto_semi_auto` which is True when a car has automatic or semi-automatic transmission and engine size above 2.9 liters (importance_score – 7.9),
+-	Boolean parameter which is True when a car belongs to `X` model line (importance_score – 7.3),
+-	Size of engine in liters (importance_score – 4.5),
+-	Added feature `mpg_2` which is filled if ` fuelType` is ` Diesel` (importance_score – 3.9).
+
+In other words we can conclude that all the features except `tax`, that were in the initial dataset proved are important for price prediction: `year`, `model`, `mileage`, `mpg`, `transmission`, `engineSize` and `fuelType`. 
+
+### Prototype of price predictor for used BMW cars 
+
+In this project several machine learning algorithms were tested and different data preprocessing approaches were explored. New features were extracted from the initial data. Data was spit into training (80%) and testing (20%) set.
+
+Predictive model based on CatBoostRegressor algorithm had the best results on the test set:
+ - explained_variance: 0.9631,
+ - mean_absolute_error: 1435.5959, 
+ - root_mean_squared_error: 2202.7952, 
+ - mean_squared_log_error: 0.008453.
+
+To check the model performance on the real data, 4 inputs of samples from [autotrader.co.uk](https://www.autotrader.co.uk) web-site were manually added and price were predicted for them. The results we got are: RMSE of £962 and MAE of £629 which is better than on training or testing set. The sample size for this test is not large enough to make any conclusions, so it's recommended to check model performance on the bigger sample and analyze the results.
+
+
+**Limitations of the price prediction model:**
+1.	Results of the best performing model on the test set are: mean absolute error of £1436  and mean squared error of £2203. There are about 20% of predictions that have error above 10% and almost 8% of predictions have error above 15%. It’s important to define what are minimal requirements for the model performance, because the current model's predictions might not be reliable enough.
+2.	CatBoostRegressor algorithm provided the best results on the test set, but is more computationally expensive than other simpler algorithms with slightly bigger loss. Amount of data to be processed and the expected execution time should be taken into consideration when applying price prediction model.
+3.	Cars sales data quickly gets irrelevant with time: demand on the market changes, new models are released and with each time period cars loose in value because their age increases, etc. The price predictor should be updated regularly to provide relevant predictions.
+
+**Possible ways to improve performance of the model:**
+
+1.	Explore in greater depth hyperparameter tuning for CatBoostRegressor. 
+2.	Some values of price are not explained by the parameters that we have in the dataset. It’s possible that more information about cars can be retrieved that can explain unclear variance in price, for example: 
+    -	assessment of car condition, 
+    -	more information about important car characteristics (engine model, color, if navigation is installed, leather/textile interior, if car is convertible, number of doors, if a car was in accident and what was a severity of damage, if a car had more than one owner, etc),
+    -	information about additional packages/additions installed in a car or assessment of value of additions/packages,
+    -	location, etc. 
+3. Collect more data (for example in the dataset there is not much data for the older cars).
+4. Explore model performance on the real unseen data and tune it in accordance to received results.
