@@ -7,13 +7,13 @@
 3. [Analysis Plan](#3)
 4. [Performance Metrics](#4)
 5. [Machine learning algorithms assumptions](#5)
-6. [Read the dataset and clean the data](#6)
-7. [Explore independent features relation to target, perform transformations and feature engineering](#6.2)
-8. [Model Development. Test regression algorithms](#6.6)
-9. [Tune model based on CatBoostRegression algorithm](#6.7)
-10. [Implement BMW used cars predictor using CatBoostRegressor algorithm](#6.9)
-11. [Conclusion and Recommendations](#7)
-12. [References](#8)
+6. Read the dataset and clean the data
+7. Explore independent features relation to target, perform transformations and feature engineering
+8. Model Development. Test regression algorithms
+9. Tune model based on CatBoostRegression algorithm
+10. Implement BMW used cars predictor using CatBoostRegressor algorithm
+11. Conclusion and Recommendations
+12. References
 
 ## 1. Project Motivation <a name="1"></a>
 
